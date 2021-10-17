@@ -3,4 +3,5 @@ schedule
 ccxt
 pandas
 numpy
-# btcsuck1A@
+flask
+requests

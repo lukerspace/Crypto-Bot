@@ -15,7 +15,7 @@ exchange = ccxt.binance({
     "apiKey": config.BINANCE_API_KEY,
     "secret": config.BINANCE_SECRET_KEY
 })
-# exchange.create_market_buy_order('ETH/USDT', 0.02)
+exchange.create_market_buy_order('ETH/USDT', 0.02)
 # exchange.create_market_sell_order('ETH/USDT', 0.02)
 # exchange.create_market_buy_order('ETH/USDT', 0.02)
 import requests
@@ -83,7 +83,7 @@ def check_buy_sell_signals(df):
     if not df['in_uptrend'][previous_row_index] and df['in_uptrend'][last_row_index]:
         print("changed to uptrend, buy")
         if not in_position:
-            order = exchange.create_market_buy_order('ETH/USDT', 0.05)
+            order = exchange.create_market_buy_order('ETH/USDT', 0.1)
             print(order)
             in_position = True
             message = f"uptrend. buy order detail: {order}"
@@ -98,7 +98,7 @@ def check_buy_sell_signals(df):
     if df['in_uptrend'][previous_row_index] and not df['in_uptrend'][last_row_index]:
         if in_position:
             print("changed to downtrend, sell")
-            order = exchange.create_market_sell_order('ETH/USDT', 0.05)
+            order = exchange.create_market_sell_order('ETH/USDT', 0.02)
             print(order)
             in_position = False
             message = f"downtrend. sell order detail: {order}"
@@ -115,7 +115,7 @@ def check_buy_sell_signals(df):
 
 def run_bot():
     print(f"Fetching new bars for {datetime.now().isoformat()}")
-    bars = exchange.fetch_ohlcv('ETH/USDT', timeframe='5m' , limit=None)
+    bars = exchange.fetch_ohlcv('ETH/USDT', timeframe='1m' , limit=None)
     df = pd.DataFrame(bars[:-1], columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
     df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
 
@@ -124,7 +124,7 @@ def run_bot():
     check_buy_sell_signals(supertrend_data)
 
 
-schedule.every(2).seconds.do(run_bot)
+schedule.every(1).seconds.do(run_bot)
 
 
 while True:
