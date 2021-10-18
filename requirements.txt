@@ -7,3 +7,4 @@ flask
 requests
 gunicorn
 python-binance
+binance
