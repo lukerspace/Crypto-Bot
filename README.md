@@ -17,4 +17,4 @@ https://ccxt.readthedocs.io/en/latest/manual.html#exchanges
 
 2. FIND THE FINAL UPPERBAND
 
-#final upperband = if (currenent basic upperband < previous final upperband) & (Previous close < prviosus final lowerband>)) :
+#final upperband = if (currenent basic upperband < previous final upperband) & (Previous close < prviosus final lowerband>))
