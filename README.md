@@ -1,3 +1,5 @@
+# Binance market order
+
 #supertrend bot using python, pandas, and ccxt
 
 https://ccxt.readthedocs.io/en/latest/manual.html
@@ -18,3 +20,7 @@ https://ccxt.readthedocs.io/en/latest/manual.html#exchanges
 2. FIND THE FINAL UPPERBAND
 
 #final upperband = if (currenent basic upperband < previous final upperband) & (Previous close < prviosus final lowerband>))
+
+# Binance-Tradingview-bot
+
+1. Tradingview webhook sent alert to the backend url which triggers the order
